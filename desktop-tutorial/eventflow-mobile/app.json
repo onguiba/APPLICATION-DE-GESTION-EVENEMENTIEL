@@ -1,0 +1,26 @@
+{
+  "expo": {
+    "name": "Lynkéné Mobile",
+    "slug": "lynkene-mobile",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "userInterfaceStyle": "light",
+    "assetBundlePatterns": [
+      "**/*"
+    ],
+    "ios": {
+      "supportsTabletMode": true
+    },
+    "android": {
+      "package": "com.eventflow"
+    },
+    "plugins": [
+      [
+        "expo-location",
+        {
+          "locationAlwaysAndWhenInUsePermissions": "Allow EventFlow to access your location."
+        }
+      ]
+    ]
+  }
+}
