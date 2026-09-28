@@ -1,0 +1,200 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int     @id @default(autoincrement())
+  email     String  @unique
+  password  String
+  name      String
+  phone     String?
+  accountType String @default("Organisateur") // Organisateur, Prestataire, Participant
+  
+  events        Event[]
+  services      Service[]
+  notifications Notification[]
+  participations Participant[] @relation("ParticipantUser")
+  serviceOffers ServiceOffer[] @relation("ProviderOffers")
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Event {
+  id          Int     @id @default(autoincrement())
+  userId      Int
+  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  name        String
+  date        String
+  location    String
+  capacity    Int     @default(100)
+  status      String  @default("Planifié") // Planifié, En cours, Brouillon, Terminé
+  type        String  @default("Conférence")
+  img         String  @default("🎤")
+  description String?
+  visibility  String  @default("private") // public, private
+  uniqueLink  String  @unique @default(cuid())
+  
+  budget      Budget?
+  participants Participant[]
+  expenses     Expense[]
+  payments     Payment[]
+  notifications Notification[]
+  paymentRequests PaymentRequest[] @relation("PaymentRequests")
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Budget {
+  id          Int     @id @default(autoincrement())
+  eventId     Int     @unique
+  event       Event   @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  
+  totalAmount Float   @default(0)
+  status      String  @default("Approuvé") // Approuvé, En attente, Rejeté
+  
+  categories  BudgetCategory[]
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model BudgetCategory {
+  id          Int     @id @default(autoincrement())
+  budgetId    Int
+  budget      Budget  @relation(fields: [budgetId], references: [id], onDelete: Cascade)
+  
+  name        String
+  allocatedAmount Float
+  spent       Float   @default(0)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Participant {
+  id        Int     @id @default(autoincrement())
+  eventId   Int
+  event     Event   @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  
+  userId    Int?    // Link to User model for participant
+  user      User?   @relation("ParticipantUser", fields: [userId], references: [id], onDelete: SetNull)
+  
+  name      String
+  email     String
+  phone     String
+  status    String  @default("En attente") // Confirmé, En attente, Annulé
+  paymentStatus String @default("En attente") // Payé, En attente, Remboursé
+  amount    Float   @default(0)
+  qrCode    String  @unique @default(cuid())
+  
+  payments  Payment[]
+  
+  @@unique([userId, eventId]) // Ensure one registration per user per event
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Expense {
+  id          Int     @id @default(autoincrement())
+  eventId     Int
+  event       Event   @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  
+  category    String
+  description String?
+  amount      Float
+  date        String
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Payment {
+  id            Int     @id @default(autoincrement())
+  participantId Int
+  participant   Participant @relation(fields: [participantId], references: [id], onDelete: Cascade)
+  
+  eventId       Int
+  event         Event   @relation(fields: [eventId], references: [id], onDelete: Cascade)
+  
+  amount        Float
+  method        String  // MoMo, OrangeMoney, Card, etc.
+  reference     String  @unique
+  status        String  @default("pending") // pending, completed, failed
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Notification {
+  id        Int     @id @default(autoincrement())
+  userId    Int
+  user      User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  eventId   Int?    // Link to event for filtering
+  event     Event?  @relation(fields: [eventId], references: [id], onDelete: SetNull)
+  
+  type      String  // alert, success, info, warning
+  message   String
+  channel   String  // Email, SMS, WhatsApp, Push
+  read      Boolean @default(false)
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@index([userId, eventId])
+}
+
+model Service {
+  id          Int     @id @default(autoincrement())
+  userId      Int
+  user        User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  name        String
+  description String
+  price       Float
+  servicesIncluded String // JSON array as string
+  status      String  @default("Actif") // Actif, Inactif, Archivé
+  category    String? // Catering, Decoration, Photography, etc.
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model ServiceOffer {
+  id          Int     @id @default(autoincrement())
+  providerId  Int
+  provider    User    @relation("ProviderOffers", fields: [providerId], references: [id], onDelete: Cascade)
+  
+  serviceType String  // Catering, Décoration, Photographie, etc.
+  description String
+  price       Float
+  status      String  @default("Publiée") // Publiée, Brouillon, Archivée
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
+
+model PaymentRequest {
+  id        Int     @id @default(autoincrement())
+  eventId   Int
+  event     Event   @relation("PaymentRequests", fields: [eventId], references: [id], onDelete: Cascade)
+  
+  amount    Float
+  status    String  @default("En attente") // En attente, Payé, Annulé
+  dueDate   DateTime
+  
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
