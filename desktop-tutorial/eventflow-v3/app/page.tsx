@@ -181,7 +181,7 @@ const faqs = [
   },
   {
     q: "La plateforme est-elle responsive ?",
-    a: "Oui, Lynkéné fonctionne parfaitement sur mobile, tablette et desktop.",
+    a: "Oui, TchadEvent fonctionne parfaitement sur mobile, tablette et desktop.",
   },
   {
     q: "Les paiements Mobile Money sont-ils disponibles ?",
@@ -275,7 +275,7 @@ export default function HomePage() {
           >
             <Image
               src="/logo%20de%20l%27application.jpeg"
-              alt="Lynkéné"
+              alt="TchadEvent"
               width={50}
               height={50}
             />
@@ -291,7 +291,7 @@ export default function HomePage() {
                 letterSpacing: "-0.03em",
               }}
             >
-              Lynkéné
+              TchadEvent
             </span>
           </Link>
 
@@ -1400,7 +1400,7 @@ export default function HomePage() {
                 color: "#fff",
               }}
             >
-              Pourquoi choisir Lynkéné?
+              Pourquoi choisir TchadEvent?
             </h2>
           </motion.div>
 
@@ -1673,7 +1673,7 @@ export default function HomePage() {
                 fontSize: 18,
               }}
             >
-              Tout ce que vous devez savoir sur Lynkéné.
+              Tout ce que vous devez savoir sur TchadEvent.
             </p>
           </div>
 
@@ -1929,7 +1929,7 @@ export default function HomePage() {
                     color: "#10B981",
                   }}
                 >
-                  Lynkéné
+                  TchadEvent
                 </span>
               </div>
 
@@ -2052,7 +2052,7 @@ export default function HomePage() {
                   }}
                 >
                   <Mail size={18} />
-                  contact@lynkene.com
+                  contact@tchadevent.com
                 </div>
 
                 <div
@@ -2101,7 +2101,7 @@ export default function HomePage() {
                 fontSize: 14,
               }}
             >
-              © 2026 Lynkéné — Tous droits réservés.
+              © 2026 TchadEvent — Tous droits réservés.
             </span>
 
             <div

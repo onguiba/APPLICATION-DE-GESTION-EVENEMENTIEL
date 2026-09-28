@@ -108,7 +108,7 @@ export default function LoginPage() {
             >
               <Image
                 src="/logo.png"
-                alt="Lynkéné"
+                alt="TchadEvent"
                 width={34}
                 height={34}
               />
@@ -123,7 +123,7 @@ export default function LoginPage() {
                 letterSpacing: "-0.03em",
               }}
             >
-              Lynkéné
+              TchadEvent
             </span>
           </Link>
 
@@ -202,7 +202,7 @@ export default function LoginPage() {
               marginBottom: 32,
             }}
           >
-            Connectez-vous à votre espace Lynkéné pour gérer vos événements
+            Connectez-vous à votre espace TchadEvent pour gérer vos événements
             facilement.
           </p>
 
@@ -456,7 +456,7 @@ export default function LoginPage() {
               fontSize: 14,
             }}
           >
-            © 2026 Lynkéné. Tous droits réservés.
+            © 2026 TchadEvent. Tous droits réservés.
           </p>
 
           <div

@@ -115,7 +115,7 @@ export async function GET(
         </head>
         <body>
           <div class="header">
-            <div class="logo">Lynkéné</div>
+            <div class="logo">TchadEvent</div>
             <div>Rapport d'événement</div>
           </div>
 
@@ -172,7 +172,7 @@ export async function GET(
 
           <div class="footer">
             <p>Généré le ${new Date().toLocaleDateString('fr-FR')} à ${new Date().toLocaleTimeString('fr-FR')}</p>
-            <p>Lynkéné - Gestion d'événements</p>
+            <p>TchadEvent - Gestion d'événements</p>
           </div>
         </body>
       </html>
@@ -183,7 +183,7 @@ export async function GET(
     return new NextResponse(htmlContent, {
       headers: {
         'Content-Type': 'text/html; charset=utf-8',
-        'Content-Disposition': `attachment; filename="Lynkéné_Report_${participation.event.name}_${participation.event.date}.html"`
+        'Content-Disposition': `attachment; filename="TchadEvent_Report_${participation.event.name}_${participation.event.date}.html"`
       }
     });
   } catch (error) {

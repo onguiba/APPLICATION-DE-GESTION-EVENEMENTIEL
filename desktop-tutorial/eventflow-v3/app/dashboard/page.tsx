@@ -146,7 +146,7 @@ export default function DashboardPage() {
     >
       <Header
         title="Dashboard"
-        subtitle="Bienvenue sur Lynkéné"
+        subtitle="Bienvenue sur TchadEvent"
         action={{
           label: "Créer un événement",
           onClick: () => {

@@ -15,7 +15,7 @@ export default function ForgotPage() {
         <div style={{ width: 30, height: 30, background: "var(--accent)", borderRadius: 7, display: "flex", alignItems: "center", justifyContent: "center" }}>
           <Zap size={14} color="#0a0a0a" fill="#0a0a0a" />
         </div>
-        <span style={{ fontFamily: "Syne, sans-serif", fontWeight: 800, fontSize: 18, letterSpacing: "-0.03em" }}>Lynkéné</span>
+        <span style={{ fontFamily: "Syne, sans-serif", fontWeight: 800, fontSize: 18, letterSpacing: "-0.03em" }}>TchadEvent</span>
       </div>
 
       {!sent ? (

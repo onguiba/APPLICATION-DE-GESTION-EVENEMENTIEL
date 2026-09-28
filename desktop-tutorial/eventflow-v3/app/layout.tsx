@@ -3,7 +3,7 @@ import "./globals.css";
 import ToastProvider from "@/components/ui/ToastProvider";
 
 export const metadata: Metadata = {
-  title: "Lynkéné — Gestion d'événements",
+  title: "TchadEvent — Gestion d'événements",
   description: "Planifiez, gérez et suivez vos événements avec précision",
 };
 

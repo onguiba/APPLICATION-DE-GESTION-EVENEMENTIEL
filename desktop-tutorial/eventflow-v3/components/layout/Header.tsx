@@ -84,7 +84,7 @@ export default function Header({
             >
               <Image
                 src="/logo.png"
-                alt="Lynkéné"
+                alt="TchadEvent"
                 width={28}
                 height={28}
               />
@@ -99,7 +99,7 @@ export default function Header({
                   letterSpacing: "-0.03em",
                 }}
               >
-                Lynkéné
+                TchadEvent
               </div>
 
               <div

@@ -23,7 +23,7 @@ export default function RapportsPage() {
     const json = JSON.stringify(data, null, 2);
     const a = document.createElement("a");
     a.href = "data:application/json;charset=utf-8," + encodeURIComponent(json);
-    a.download = "rapport-lynkene.json";
+    a.download = "rapport-tchadevent.json";
     a.click();
   };
 

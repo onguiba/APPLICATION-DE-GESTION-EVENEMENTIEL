@@ -60,7 +60,7 @@ export default function SettingsPage() {
                   </div>
                   <div>
                     <div style={{ fontSize: 15, fontWeight: 600, fontFamily: "Syne, sans-serif" }}>{profile.prenom} {profile.nom}</div>
-                    <div style={{ fontSize: 12, color: "var(--text-muted)" }}>{profile.role} · Lynkéné</div>
+                    <div style={{ fontSize: 12, color: "var(--text-muted)" }}>{profile.role} · TchadEvent</div>
                   </div>
                   <button onClick={() => showToast("Upload photo — bientôt disponible", "info")} style={{ marginLeft: "auto", background: "none", border: "1px solid var(--border)", borderRadius: 7, padding: "6px 14px", fontSize: 12, color: "var(--text-muted)", cursor: "pointer" }}>
                     Changer photo

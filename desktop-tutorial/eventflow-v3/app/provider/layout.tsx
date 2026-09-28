@@ -33,7 +33,7 @@ export default function ProviderLayout({
       >
         <div>
           <h1 style={{ fontSize: 24, fontWeight: 800, color: "#10B981", margin: 0 }}>
-            Lynkéné
+            TchadEvent
           </h1>
           <p style={{ fontSize: 12, color: "#94a3b8", margin: "4px 0 0 0" }}>
             Prestataire

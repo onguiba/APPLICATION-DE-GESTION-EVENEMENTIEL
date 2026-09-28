@@ -51,12 +51,16 @@ const navItems = [
   },
 ];
 
-export default function Sidebar() {
+interface SidebarProps {
+  onClose?: () => void;
+}
+
+export default function Sidebar({ onClose }: SidebarProps) {
   const pathname = usePathname();
 
   const router = useRouter();
 
-  const { notifications, showToast } = useStore();
+  const { notifications, showToast, fetchEvents, fetchParticipants, fetchDepenses } = useStore();
 
   const unread = notifications.filter((n) => !n.lu).length;
 
@@ -68,6 +72,10 @@ export default function Sidebar() {
     };
 
     window.addEventListener("keydown", handler);
+
+    fetchEvents();
+    fetchParticipants();
+    fetchDepenses();
 
     return () => window.removeEventListener("keydown", handler);
   }, []);
@@ -126,7 +134,7 @@ export default function Sidebar() {
           >
             <Image
               src="/logo.png"
-              alt="Lynkéné"
+              alt="TchadEvent"
               width={30}
               height={30}
             />
@@ -141,7 +149,7 @@ export default function Sidebar() {
                 letterSpacing: "-0.03em",
               }}
             >
-              Lynkéné
+              TchadEvent
             </div>
 
             <div
@@ -179,6 +187,7 @@ export default function Sidebar() {
             <Link
               key={href}
               href={href}
+              onClick={onClose}
               style={{
                 display: "flex",
                 alignItems: "center",

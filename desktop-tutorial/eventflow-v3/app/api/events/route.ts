@@ -67,7 +67,11 @@ export async function POST(req: NextRequest) {
         date,
         location,
         capacity: capacity || 100,
-        budget: budget || 0,
+        budget: {
+          create: {
+            totalAmount: budget || 0,
+          }
+        },
         status: status || 'Planifié',
         type: type || 'Conférence',
         img: img || '🎤',

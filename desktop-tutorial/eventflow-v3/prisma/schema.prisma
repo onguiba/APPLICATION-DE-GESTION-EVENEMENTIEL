@@ -16,6 +16,7 @@ model User {
   password  String
   name      String
   phone     String?
+  role      String  @default("user") // user, admin
   accountType String @default("Organisateur") // Organisateur, Prestataire, Participant
   
   events        Event[]
